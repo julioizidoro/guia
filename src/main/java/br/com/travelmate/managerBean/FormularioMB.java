@@ -11,9 +11,7 @@ import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Guiaescola;
 import br.com.travelmate.model.Pais;
-import br.com.travelmate.repository.FornecedorRepository;
-import br.com.travelmate.repository.PaisRepository;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -26,7 +24,7 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class FormularioMB {
+public class FormularioMB implements Serializable{
 
    
     @EJB
