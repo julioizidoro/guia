@@ -1,0 +1,440 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>References From School</title>
+        <link href="../resources/css/css.css" rel="stylesheet" type="text/css" />
+        <link rel="SHORTCUT ICON" href="http://cdn8.staztic.com/app/a/6090/6090049/travelmate-9-l-280x280.png"/>
+    </h:head>
+
+    <h:body >
+        <h:form id="telaFormulario">
+            <br></br> <br></br>  
+            <p:growl id="mensagem" showDetail="true" sticky="true" />
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <img src="../resources/img/ajax-loader.gif" />
+            </p:dialog>
+            <br></br>
+            <img src="../resources/img/logo.png" style=" margin-left:8%;"/>
+            <br></br>   <br></br><br></br>
+            <p:wizard class="painelFormulario">
+                <p:tab id="etapa1">
+                    <br></br>   
+                    <p:outputLabel for="escola" value="School's Name"/>
+                    <p:outputLabel for="pais" value="Countries" style="margin-left: 28%;"/>
+                    <p:outputLabel for="cidade" value="Cities" style="margin-left: 24.5%;"/><br></br>  
+                    <h:panelGrid columns="3">
+                        <p:inputText id="escola" value="#" style="width:150%;"/>
+                        <p:selectOneMenu id="pais" value="#" style="margin-left:38%;width:200px;">
+                            <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                            <f:selectItems value="#" var="pais" itemLabel="#" itemValue="#"/>
+                        </p:selectOneMenu>
+                        <p:selectOneMenu id="cidade" value="#" style="margin-left:11%;width: 220px;">
+                            <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                            <f:selectItems value="#" var="cidade" itemLabel="#" itemValue="#"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <br></br>  <br></br>  
+                </p:tab>
+                <p:tab id="etapa2">
+                    <br></br> 
+                    <p:outputLabel for="site" value="Agent’s Site"/><br></br>
+                    <p:inputText id="site" value="#" maxlength="100" style="width: 90%;"/>
+                    <br></br>  <br></br>
+                    <p:outputLabel for="idade" value="Minimun Age for Regular Courses and Maximun Age for Regular Courses?"/><br></br>
+                    <p:selectOneMenu id="idade" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="10" itemValue="10"/>
+                        <f:selectItem itemLabel="11" itemValue="11"/> 
+                        <f:selectItem itemLabel="12" itemValue="12"/>
+                        <f:selectItem itemLabel="13" itemValue="13"/>
+                        <f:selectItem itemLabel="14" itemValue="14"/>
+                        <f:selectItem itemLabel="15" itemValue="15"/>
+                        <f:selectItem itemLabel="16" itemValue="16"/>
+                        <f:selectItem itemLabel="17" itemValue="17"/>
+                        <f:selectItem itemLabel="18" itemValue="18"/>
+                    </p:selectOneMenu>
+                    <br></br>  <br></br>
+                    <p:outputLabel for="dataInicio" value="For Regular Courses the student can start any Monday? Or needs to follow the Calendar?"/><br></br>
+                    <p:selectOneMenu id="dataInicio" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br>  <br></br>
+                    <p:outputLabel for="teste" value="Wich Day is the Level Test?"/><br></br>
+                    <p:inputTextarea id="teste" value="#" rows="4" cols="104" />
+                    <br></br>  <br></br>
+                    <p:outputLabel for="duracao" value="What is the duration of the Class?"/><br></br>
+                    <p:inputTextarea id="duracao" value="#" rows="1" cols="104" />
+                    <br></br>  <br></br>
+                </p:tab>
+                <p:tab id="etapa3">
+                    <br></br> 
+                    <p:outputLabel for="material" value="When the student needs to pay the Material (Books)?In the Application or when arrives at School?"/><br></br>
+                    <p:selectOneMenu id="material" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="TravelMate - Agent" itemValue="Agent"/>
+                        <f:selectItem itemLabel="School" itemValue="School"/> 
+                    </p:selectOneMenu>
+                    <br></br>  <br></br>
+                    <p:outputLabel for="courier" value="How much is the courier to send the I-20?" rendered="true"/><br></br>
+                    <p:inputText id="courier"  style="width:11%;text-align: right;" rendered="true" placeholder="U$ 0,00">
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>
+                    <br></br>  <br></br>
+                    <p:outputLabel for="exameFinal" value="How much is the Final Exam and wich one the student will pay? And when the student needs to pay it, in the Application or when arrives at School? " rendered="true"/><br></br>
+                    <p:inputText id="exameFinal" style="width:11%;text-align: right;" rendered="true" placeholder="U$ 0,00">
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>
+                    <p:inputText id="ondeExameFinal" value="#" style="width:81%;margin-left: 5%" rendered="true" />
+                    <br></br>  <br></br>
+                </p:tab>
+                <p:tab id="etapa4">
+                    <h2 >Homestay </h2>
+                    <br></br> 
+                    <p:outputLabel for="entradaAcomodacao1" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
+                    <p:selectOneMenu id="entradaAcomodacao1" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="saidaAcomodacao1" value="Wich Day the Student can leave from Accommodation?"/><br></br>
+                    <p:selectOneMenu id="saidaAcomodacao1" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="noiteExtra1" value="The student can book extras nights? How many will be the maximum?"/><br></br>
+                    <p:selectOneMenu id="noiteExtra1" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="numExtra1" value="#" style="width:70px;margin-left:5%;">
+                        <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="1" itemValue="1"/>
+                        <f:selectItem itemLabel="2" itemValue="2"/> 
+                        <f:selectItem itemLabel="3" itemValue="3"/>
+                        <f:selectItem itemLabel="4" itemValue="4"/>
+                        <f:selectItem itemLabel="5" itemValue="5"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="compartilhado1" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
+                    <p:selectOneMenu id="compartilhado1" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <br></br> <br></br>  
+                </p:tab>
+                <p:tab id="etapa5">
+                    <h2 >Apartment </h2>
+                    <br></br> 
+                    <p:outputLabel for="entradaAcomodacao2" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
+                    <p:selectOneMenu id="entradaAcomodacao2" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="saidaAcomodacao2" value="Wich Day the Student can leave from Accommodation?"/><br></br>
+                    <p:selectOneMenu id="saidaAcomodacao2" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="noiteExtra2" value="The student can book extras nights? How many will be the maximum?"/><br></br>
+                    <p:selectOneMenu id="noiteExtra2" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="numExtra2" value="#" style="width:70px;margin-left:5%;">
+                        <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="1" itemValue="1"/>
+                        <f:selectItem itemLabel="2" itemValue="2"/> 
+                        <f:selectItem itemLabel="3" itemValue="3"/>
+                        <f:selectItem itemLabel="4" itemValue="4"/>
+                        <f:selectItem itemLabel="5" itemValue="5"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="compartilhado2" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
+                    <p:selectOneMenu id="compartilhado2" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <br></br> <br></br>  
+                </p:tab>
+                <p:tab id="etapa6">
+                    <h2 >Studio </h2>
+                    <br></br> 
+                    <p:outputLabel for="entradaAcomodacao3" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
+                    <p:selectOneMenu id="entradaAcomodacao3" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="saidaAcomodacao3" value="Wich Day the Student can leave from Accommodation?"/><br></br>
+                    <p:selectOneMenu id="saidaAcomodacao3" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="noiteExtra3" value="The student can book extras nights? How many will be the maximum?"/><br></br>
+                    <p:selectOneMenu id="noiteExtra3" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="numExtra3" value="#" style="width:70px;margin-left:5%;">
+                        <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="1" itemValue="1"/>
+                        <f:selectItem itemLabel="2" itemValue="2"/> 
+                        <f:selectItem itemLabel="3" itemValue="3"/>
+                        <f:selectItem itemLabel="4" itemValue="4"/>
+                        <f:selectItem itemLabel="5" itemValue="5"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="compartilhado3" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
+                    <p:selectOneMenu id="compartilhado3" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <br></br> <br></br>  
+                </p:tab>
+                <p:tab id="etapa7">
+                    <h2 >Hostel </h2>
+                    <br></br> 
+                    <p:outputLabel for="entradaAcomodacao4" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
+                    <p:selectOneMenu id="entradaAcomodacao4" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="saidaAcomodacao4" value="Wich Day the Student can leave from Accommodation?"/><br></br>
+                    <p:selectOneMenu id="saidaAcomodacao4" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="noiteExtra4" value="The student can book extras nights? How many will be the maximum?"/><br></br>
+                    <p:selectOneMenu id="noiteExtra4" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="numExtra4" value="#" style="width:70px;margin-left:5%;">
+                        <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="1" itemValue="1"/>
+                        <f:selectItem itemLabel="2" itemValue="2"/> 
+                        <f:selectItem itemLabel="3" itemValue="3"/>
+                        <f:selectItem itemLabel="4" itemValue="4"/>
+                        <f:selectItem itemLabel="5" itemValue="5"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="compartilhado4" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
+                    <p:selectOneMenu id="compartilhado4" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <br></br> <br></br>  
+                </p:tab>
+                <p:tab id="etapa8">
+                    <h2 >Residence </h2>
+                    <br></br> 
+                    <p:outputLabel for="entradaAcomodacao5" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
+                    <p:selectOneMenu id="entradaAcomodacao5" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="saidaAcomodacao5" value="Wich Day the Student can leave from Accommodation?"/><br></br>
+                    <p:selectOneMenu id="saidaAcomodacao5" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="noiteExtra5" value="The student can book extras nights? How many will be the maximum?"/><br></br>
+                    <p:selectOneMenu id="noiteExtra5" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="numExtra5" value="#" style="width:70px;margin-left:5%;">
+                        <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="1" itemValue="1"/>
+                        <f:selectItem itemLabel="2" itemValue="2"/> 
+                        <f:selectItem itemLabel="3" itemValue="3"/>
+                        <f:selectItem itemLabel="4" itemValue="4"/>
+                        <f:selectItem itemLabel="5" itemValue="5"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="compartilhado5" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
+                    <p:selectOneMenu id="compartilhado5" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <br></br> <br></br>  
+                </p:tab>
+                <p:tab id="etapa9">
+                    <h2 >Student Residence </h2>
+                    <br></br> 
+                    <p:outputLabel for="entradaAcomodacao6" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
+                    <p:selectOneMenu id="entradaAcomodacao6" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="saidaAcomodacao6" value="Wich Day the Student can leave from Accommodation?"/><br></br>
+                    <p:selectOneMenu id="saidaAcomodacao6" value="#" style="width:150px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
+                        <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
+                        <f:selectItem itemLabel="Tuesday" itemValue="Tuesday"/>
+                        <f:selectItem itemLabel="Wednesday" itemValue="Wednesday"/>
+                        <f:selectItem itemLabel="Thursday" itemValue="Thursday"/>
+                        <f:selectItem itemLabel="Friday" itemValue="Friday"/>
+                        <f:selectItem itemLabel="Saturday" itemValue="Saturday"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="noiteExtra6" value="The student can book extras nights? How many will be the maximum?"/><br></br>
+                    <p:selectOneMenu id="noiteExtra6" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="numExtra6" value="#" style="width:70px;margin-left:5%;">
+                        <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
+                        <f:selectItem itemLabel="1" itemValue="1"/>
+                        <f:selectItem itemLabel="2" itemValue="2"/> 
+                        <f:selectItem itemLabel="3" itemValue="3"/>
+                        <f:selectItem itemLabel="4" itemValue="4"/>
+                        <f:selectItem itemLabel="5" itemValue="5"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="compartilhado6" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
+                    <p:selectOneMenu id="compartilhado6" value="#" style="width:72px;">
+                        <f:selectItem itemLabel="No" itemValue="No"/>
+                        <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
+                    </p:selectOneMenu>
+                    <br></br> <br></br>  
+                </p:tab>
+                <p:tab id="etapa10">
+                    <br></br> 
+                    <p:outputLabel for="feriado" value="When the School will close at the End of the Year? And when will be the first Day of Classes?"/><br></br>
+                    <p:calendar id="feriado" pattern="dd/MM/yyyy" size="13">
+                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                    </p:calendar>
+                    <p:calendar id="feriadoEscola" pattern="dd/MM/yyyy" style="margin-left: 6%;" size="13">
+                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                    </p:calendar>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="textoFeriado" value="Wich holidays or other breaks the school have?"/><br></br>
+                    <p:inputTextarea id="textoFeriado" value="#" rows="5" cols="104" />
+                    <br></br> <br></br> 
+                    <p:outputLabel for="valoresAnoSeguinte" value="From when do we need to apply next year fees?"/><br></br>
+                    <p:selectOneMenu id="valoresAnoSeguinte" value="#" style="width:130px;">
+                        <f:selectItem itemLabel="Select" itemValue="sn" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="January" itemValue="January"/>
+                        <f:selectItem itemLabel="February" itemValue="February"/> 
+                        <f:selectItem itemLabel="March" itemValue="March"/>
+                        <f:selectItem itemLabel="April" itemValue="April"/> 
+                        <f:selectItem itemLabel="May" itemValue="May"/>
+                        <f:selectItem itemLabel="June" itemValue="June"/> 
+                        <f:selectItem itemLabel="July" itemValue="July"/>
+                        <f:selectItem itemLabel="August" itemValue="August"/> 
+                        <f:selectItem itemLabel="September" itemValue="September"/>
+                        <f:selectItem itemLabel="October" itemValue="October"/> 
+                        <f:selectItem itemLabel="November" itemValue="November"/>
+                        <f:selectItem itemLabel="December" itemValue="December"/> 
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <p:outputLabel for="notes" value="Notes"/><br></br>
+                    <p:inputTextarea id="notes" value="#" rows="5" cols="104" />
+                    <br></br> <br></br> 
+                    <p:commandButton value="Confirm" icon="ui-icon-check" style="margin-left:49%;position: absolute;"  onclick="PF('finalizar').show();" />
+                    <p:dialog  hideEffect="fade" widgetVar="finalizar" width="280px" style="text-align: center;">
+                        <p:outputLabel value="Would you like to finish this form?"  style="text-align: center;" />
+                        <br></br> <br></br>
+                        <p:commandButton value="Yes"  oncomplete="PF('finalizar').hide();"
+                                         styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="mensagem"  style="text-align: center;"/>
+                        <p:commandButton value="No"  oncomplete="PF('finalizar').hide();" 
+                                         styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="mensagem"  style="text-align: center;margin-left: 2%;"/>
+                    </p:dialog> 
+                </p:tab>
+            </p:wizard>
+            <br></br> <br></br>
+        </h:form>
+    </h:body>
+</html>
