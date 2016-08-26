@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -40,6 +41,10 @@ public class Pais implements Serializable {
     @Size(max = 5)
     @Column(name = "sigla")
     private String sigla;
+    @Lob
+    @Size(max = 16777215)
+    @Column(name = "texto")
+    private String texto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
     private List<Cidade> cidadeList;
     @JoinColumn(name = "moedas_idmoedas", referencedColumnName = "idmoedas")
@@ -75,6 +80,14 @@ public class Pais implements Serializable {
 
     public void setSigla(String sigla) {
         this.sigla = sigla;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
     public List<Cidade> getCidadeList() {

@@ -6,17 +6,15 @@
 package br.com.travelmate.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -39,6 +37,13 @@ public class Fornecedorcidade implements Serializable {
     private String classificacao;
     @Column(name = "peso")
     private Integer peso;
+    @Lob
+    @Size(max = 16777215)
+    @Column(name = "texto")
+    private String texto;
+    @Size(max = 50)
+    @Column(name = "imagem")
+    private String imagem;
     @JoinColumn(name = "cidade_idcidade", referencedColumnName = "idcidade")
     @ManyToOne(optional = false)
     private Cidade cidade;
@@ -48,8 +53,6 @@ public class Fornecedorcidade implements Serializable {
     @JoinColumn(name = "produtos_idprodutos", referencedColumnName = "idprodutos")
     @ManyToOne(optional = false)
     private Produtos produtos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Fornecedorcidadeguia> fornecedorcidadeguiaList;
 
     public Fornecedorcidade() {
     }
@@ -82,6 +85,22 @@ public class Fornecedorcidade implements Serializable {
         this.peso = peso;
     }
 
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
     public Cidade getCidade() {
         return cidade;
     }
@@ -104,14 +123,6 @@ public class Fornecedorcidade implements Serializable {
 
     public void setProdutos(Produtos produtos) {
         this.produtos = produtos;
-    }
-
-    public List<Fornecedorcidadeguia> getFornecedorcidadeguiaList() {
-        return fornecedorcidadeguiaList;
-    }
-
-    public void setFornecedorcidadeguiaList(List<Fornecedorcidadeguia> fornecedorcidadeguiaList) {
-        this.fornecedorcidadeguiaList = fornecedorcidadeguiaList;
     }
 
     @Override

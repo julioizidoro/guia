@@ -82,6 +82,9 @@ public class Fornecedor implements Serializable {
     private String logo;
     @Column(name = "habilitarorcamento")
     private Boolean habilitarorcamento;
+    @Size(max = 200)
+    @Column(name = "site")
+    private String site;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
     private List<Fornecedorcidade> fornecedorcidadeList;
 
@@ -234,6 +237,14 @@ public class Fornecedor implements Serializable {
 
     public void setHabilitarorcamento(Boolean habilitarorcamento) {
         this.habilitarorcamento = habilitarorcamento;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
     }
 
     public List<Fornecedorcidade> getFornecedorcidadeList() {
