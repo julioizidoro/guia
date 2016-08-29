@@ -8,6 +8,7 @@ package br.com.travelmate.managerBean;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pais;
+import br.com.travelmate.repository.CidadeRepository;
 import br.com.travelmate.repository.FornecedorCidadeRepository;
 import br.com.travelmate.repository.PaisRepository;
 import java.io.Serializable;
@@ -28,12 +29,14 @@ import javax.servlet.http.HttpSession;
  */
 @Named
 @SessionScoped
-public class InicalMB implements Serializable{
-    
+public class InicalMB implements Serializable {
+
     @EJB
     private PaisRepository paisRepository;
     @EJB
     private FornecedorCidadeRepository fornecedorCidadeRepository;
+    @EJB
+    private CidadeRepository cidadeRepository;
     private Pais pais;
     private List<Pais> listaPais;
     private List<Pais> listaPaisSelecionados;
@@ -42,9 +45,9 @@ public class InicalMB implements Serializable{
     private List<Cidade> listaCidadeSelecionadas;
     private Fornecedorcidade fornecedorCidade;
     private List<Fornecedorcidade> listaFornecedorCidade;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         pais = new Pais();
         cidade = new Cidade();
         fornecedorCidade = new Fornecedorcidade();
@@ -52,7 +55,7 @@ public class InicalMB implements Serializable{
         listaCidadeSelecionadas = new ArrayList<Cidade>();
         listaFornecedorCidade = new ArrayList<Fornecedorcidade>();
         listaPais = new ArrayList<Pais>();
-        listaPaisSelecionados =new ArrayList<Pais>();
+        listaPaisSelecionados = new ArrayList<Pais>();
         gerarListaPais();
     }
 
@@ -119,48 +122,61 @@ public class InicalMB implements Serializable{
     public void setListaCidadeSelecionadas(List<Cidade> listaCidadeSelecionadas) {
         this.listaCidadeSelecionadas = listaCidadeSelecionadas;
     }
-    
-    public void gerarListaPais(){
+
+    public void gerarListaPais() {
         listaPais = paisRepository.list("SELECT p FROM Pais p order by p.nome");
-        if (listaPais==null){
+        if (listaPais == null) {
             listaPais = new ArrayList<Pais>();
         }
     }
-    
-    public void gerarListaCidade(){
-        if ((listaPaisSelecionados!=null) && (listaPaisSelecionados.size()==1)){
+
+    public void gerarListaCidade() {
+        if ((listaPaisSelecionados != null) && (listaPaisSelecionados.size() == 1)) {
             listaCidade = listaPaisSelecionados.get(0).getCidadeList();
+        } else if ((listaPaisSelecionados != null) && (listaPaisSelecionados.size() > 1)) {
+            String sql = "select c from Cidade c where";
+            for (int i = 0; i < listaPaisSelecionados.size(); i++) {
+                sql = sql + " c.pais.idpais=" + listaPaisSelecionados.get(i).getIdpais();
+                if ((i + 1) < listaPaisSelecionados.size()) {
+                    sql = sql + " or";
+                }
+            }
+            sql = sql + " ORDER BY c.pais.nome, c.cidade.nome";
+            listaCidadeSelecionadas = cidadeRepository.list(sql);
+            listaCidade = new ArrayList<Cidade>();
+            gerarListaFornecedor();
         }else listaCidade = new ArrayList<Cidade>();
     }
-    
-    public void gerarListaFornecedor(){
+
+    public void gerarListaFornecedor() {
         if (listaCidadeSelecionadas != null) {
             String sql = "SELECT f FROM Fornecedorcidade f where ";
             if ((listaCidadeSelecionadas.size() == 1)) {
                 sql = sql + " f.cidade.idcidade=" + listaCidadeSelecionadas.get(0).getIdcidade();
             } else {
                 for (int i = 0; i < listaCidadeSelecionadas.size(); i++) {
-                    sql = sql + " f.cidade.idcidade=" + listaCidadeSelecionadas.get(0).getIdcidade();
+                    sql = sql + " f.cidade.idcidade=" + listaCidadeSelecionadas.get(i).getIdcidade();
                     if ((i + 1) < listaCidadeSelecionadas.size()) {
                         sql = sql + " or ";
                     }
                 }
             }
             sql = sql + " GROUP BY f.fornecedor.idfornecedor ORDER BY f.fornecedor.nome";
-        }else{
+            listaFornecedorCidade = fornecedorCidadeRepository.list(sql);
+        } else {
             listaFornecedorCidade = new ArrayList<Fornecedorcidade>();
         }
-    }   
-    
-    public String proximoTela(){
-        if (fornecedorCidade!=null){
+    }
+
+    public String proximoTela() {
+        if (fornecedorCidade != null) {
             FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("listaPais", listaPaisSelecionados);
             session.setAttribute("listaCidade", listaCidadeSelecionadas);
             session.setAttribute("fornecedorCidade", fornecedorCidade);
-            return "formulario";            
-        }else {
+            return "formulario";
+        } else {
             FacesMessage mensagemAtencao = new FacesMessage("Select a school.", "");
             FacesContext.getCurrentInstance().addMessage("Attention", mensagemAtencao);
             return null;

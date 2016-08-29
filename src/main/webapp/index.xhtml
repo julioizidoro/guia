@@ -8,12 +8,12 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>References From School</title>
-        <link href="resources/css/css.css" rel="stylesheet" type="text/css" />
+        <link href="resources/css/cssInicial.css" rel="stylesheet" type="text/css" />
         <link rel="SHORTCUT ICON" href="http://cdn8.staztic.com/app/a/6090/6090049/travelmate-9-l-280x280.png"/>
     </h:head>
 
     <h:body > 
-        <h:form id="telaInicial" style="font-size:12px;">
+        <h:form id="telaInicial" style="font-size:12px;color:#ffffff;">
             <br></br> <br></br>  
             <p:growl id="mensagem" showDetail="true" sticky="true" />
             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
@@ -32,15 +32,20 @@
                     <h:panelGrid columns="1" >
                         <p:outputLabel value="Countries" for="idpais"/>
                         <p:selectCheckboxMenu id="idpais" value="#{inicalMB.listaPaisSelecionados}" label="pais"
-                                          style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                            <f:selectItems value="#{inicalMB.listaPais}" var="pais" itemLabel="#{pais.nome}" itemValue="pais"/>
-                            <p:ajax event="change" listener="#{inicalMB.gerarListaCidade()}" update="idcidade"/>
-                        </p:selectCheckboxMenu> 
+                                              converter="PaisConverter"   style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                            <f:selectItems value="#{inicalMB.listaPais}" var="pais" itemLabel="#{pais.nome}" itemValue="#{pais}"/>
+                             <f:attribute name="listaPais"
+                                         value="#{inicalMB.listaPais}" />
+                            <p:ajax event="change" listener="#{inicalMB.gerarListaCidade()}" update="idcidade, idescola"/>
+                        </p:selectCheckboxMenu>  
                         <br/>
                         <p:outputLabel value="Cities" for="idcidade"/> 
                         <p:selectCheckboxMenu id="idcidade" value="#{inicalMB.listaCidadeSelecionadas}" label="cidade"
-                                           style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                                              converter="CidadeConverter"  style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
                             <f:selectItems value="#{inicalMB.listaCidade}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade}"/>
+                            <f:attribute name="listaCidade"
+                                         value="#{inicalMB.listaCidade}" />
+                            <p:ajax event="change" listener="#{inicalMB.gerarListaFornecedor()}" update="idescola"/>
                         </p:selectCheckboxMenu>
                         <br/>
                         <p:outputLabel value="School's Name" for="idescola"/>

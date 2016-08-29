@@ -24,11 +24,11 @@
             <br></br>
             <img src="resources/img/logo.png" style=" margin-left:8%;"/>
             <br></br>   <br></br>
-            <p:wizard class="painelFormulario"> 
-               <p:tab id="etapa1">
+            <p:tabView class="painelFormulario"> 
+                <p:tab id="etapa1" title="Information">
                     <br></br> 
                     <p:outputLabel for="nome" value="Your Name"/><br></br>
-                    <p:inputText id="nome" value="#" maxlength="100" style="width: 90%;"/>
+                    <p:inputText id="nome" value="#{formularioMB.guiaEscola.nome}" maxlength="100" style="width: 90%;"/>
                     <br></br>  <br></br>
                     <p:outputLabel for="site" value="Agent’s Site"/><br></br>
                     <p:inputText id="site" value="#{formularioMB.guiaEscola.site}" maxlength="100" style="width: 90%;"/>
@@ -66,8 +66,8 @@
                     <p:inputTextarea id="duracao" value="#{formularioMB.guiaEscola.duracao}" rows="1" class="comment-text-area" />
                     <br></br>  <br></br> 
                 </p:tab>
-                <p:tab id="etapa2">
-                    <br></br> 
+                <p:tab id="etapa2" title="Complement">
+                    <br></br>  
                     <p:outputLabel for="material" value="When the student needs to pay the Material (Books)?In the Application or when arrives at School?"/><br></br>
                     <p:selectOneMenu id="material" value="#{formularioMB.guiaEscola.material}" style="width:150px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
@@ -87,7 +87,7 @@
                     <p:inputText id="ondeExameFinal" value="#{formularioMB.guiaEscola.pagaexamefinal}" style="width:81%;margin-left: 5%" rendered="true" />
                     <br></br>  <br></br>
                 </p:tab>
-                <p:tab id="etapa3">
+                <p:tab id="etapa3" title="Homestay">
                     <h2 >Homestay </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao1" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -135,7 +135,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa4">
+                <p:tab id="etapa4" title="Apartment">
                     <h2 >Apartment </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao2" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -183,7 +183,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa5">
+                <p:tab id="etapa5" title="Studio">
                     <h2 >Studio </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao3" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -231,7 +231,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa6">
+                <p:tab id="etapa6" title="Hostel">
                     <h2 >Hostel </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao4" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -279,7 +279,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa7">
+                <p:tab id="etapa7" title="Residence">
                     <h2 >Residence </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao5" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -327,8 +327,8 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa8">
-                    <h2 >Student Residence </h2>
+                <p:tab id="etapa8" title="Student">
+                    <h2 >Student Residence</h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao6" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
                     <p:selectOneMenu id="entradaAcomodacao6" value="#{formularioMB.guiaEscola.studentresidenceentrada}" style="width:150px;">
@@ -375,7 +375,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa9">
+                <p:tab id="etapa9" title="Notes">
                     <br></br> 
                     <p:outputLabel for="feriado" value="When the School will close at the End of the Year? And when will be the first Day of Classes?"/><br></br>
                     <p:calendar id="feriado" value="#{formularioMB.guiaEscola.datafechamento}" pattern="dd/MM/yyyy" size="13">
@@ -408,17 +408,20 @@
                     <p:outputLabel for="notes" value="Notes"/><br></br>
                     <p:inputTextarea id="notes" value="#{formularioMB.guiaEscola.observacoesgerais}" rows="5" class="comment-text-area" />
                     <br></br> <br></br> <br></br> <br></br>  <br></br> <br></br> 
-                    <p:commandButton value="Confirm" icon="ui-icon-check" style="margin-left:49%;position: absolute;"  onclick="PF('finalizar').show();" />
+                    <div align="right" style="width: 96%;">
+                        <p:commandButton value="Confirm" icon="ui-icon-check" class="botaoLogin" onclick="PF('finalizar').show();" style=" background: rgba(0,0,0,0.54);color:#fff; border: 1px #ffffff; padding: 0.0em;"/>
+                    </div> 
                     <p:dialog  hideEffect="fade" widgetVar="finalizar" width="280px" style="text-align: center;">
-                        <p:outputLabel value="Would you like to finish this form?"  style="text-align: center;" />
+                        <p:outputLabel value="Would you like to finish this form?"  style="text-align: center; color: #4D4D4D;" />
                         <br></br> <br></br>
-                        <p:commandButton value="Yes"  oncomplete="PF('finalizar').hide();"
-                                         styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="mensagem"  style="text-align: center;"/>
-                        <p:commandButton value="No"  oncomplete="PF('finalizar').hide();" 
-                                         styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="mensagem"  style="text-align: center;margin-left: 2%;"/>
+                        <p:commandButton value="Yes" action="#{formularioMB.salvar()}" onclick="PF('finalizar').hide();"
+                                         styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update=":telaFormulario:mensagem" style="text-align: center;"/>
+                        <p:commandButton value="No"  onclick="PF('finalizar').hide();" 
+                                         styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":telaFormulario:mensagem"   style="text-align: center;margin-left: 2%;"/>
                     </p:dialog> 
+                    <br></br> <br></br>
                 </p:tab>
-            </p:wizard>
+            </p:tabView >
             <br></br> <br></br>
         </h:form>
     </h:body>

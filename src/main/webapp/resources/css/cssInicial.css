@@ -12,44 +12,6 @@ body{
     font-size: 12px;
 }
 
-#telaFormulario{
-    width: 70%; 
-    height: 100%;
-    margin: 2% 0% 2% 15%;
-    float: left;
-    color:#ffffff;
-    background-color: rgba(0,0,0,0.68);
-    font-size: 12px;
-}
-
-.painelFormulario{
-    width:88%;  
-    margin-left:8%;  
-    background: #4D4D4D;
-    border: none;
-    color:#ffffff;
-}
-
-.ui-widget-content {
-    color: #ffffff;
-}
-
-.ui-selectonemenu-panel .ui-selectonemenu-list-item{
-    color: #4D4D4D;
-}
-
-.ui-tabs.ui-tabs-top > .ui-tabs-nav{
-   background: #E6E6E6;
-    border-radius: 6px;
-}
-.ui-tabs.ui-tabs-top .ui-tabs-nav li.ui-tabs-selected{
-    border-radius: 6px;
-}
-
-#divFormulario{
-    background-color: rgba(0,0,0,0.40);
-}
-
 .ui-wizard-step-title{
    background:transparent;
    border: 1px transparent;
@@ -91,10 +53,4 @@ body{
 .comment-text-area {
   float: left;
   width:95%;
-}
-
-.ui-datepicker table {
-    font-size: .9em;
-    border-collapse: collapse;
-    color: #4D4D4D;
 }
