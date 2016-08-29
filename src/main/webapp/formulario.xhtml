@@ -414,10 +414,10 @@
                     <p:dialog  hideEffect="fade" widgetVar="finalizar" width="280px" style="text-align: center;">
                         <p:outputLabel value="Would you like to finish this form?"  style="text-align: center; color: #4D4D4D;" />
                         <br></br> <br></br>
-                        <p:commandButton value="Yes" action="#{formularioMB.salvar()}" onclick="PF('finalizar').hide();"
-                                         styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update=":telaFormulario:mensagem" style="text-align: center;"/>
+                        <p:commandButton value="Yes" actionListener="#{formularioMB.salvar()}" oncomplete="PF('finalizar').hide();"
+                                         styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update=":telaFormulario:mensagem" style="background: rgba(0,0,0,0.54);color:#fff; border: 1px #ffffff; padding: 0.0em;text-align: center;"/>
                         <p:commandButton value="No"  onclick="PF('finalizar').hide();" 
-                                         styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":telaFormulario:mensagem"   style="text-align: center;margin-left: 2%;"/>
+                                         styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":telaFormulario:mensagem"   style="background: rgba(0,0,0,0.54);color:#fff; border: 1px #ffffff; padding: 0.0em;text-align: center;margin-left: 2%;"/>
                     </p:dialog> 
                     <br></br> <br></br>
                 </p:tab>
