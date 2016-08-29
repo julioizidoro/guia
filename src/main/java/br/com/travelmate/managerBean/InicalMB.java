@@ -12,6 +12,7 @@ import br.com.travelmate.repository.FornecedorCidadeRepository;
 import br.com.travelmate.repository.PaisRepository;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -19,6 +20,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,7 +53,7 @@ public class InicalMB implements Serializable{
         listaFornecedorCidade = new ArrayList<Fornecedorcidade>();
         listaPais = new ArrayList<Pais>();
         listaPaisSelecionados =new ArrayList<Pais>();
-        
+        gerarListaPais();
     }
 
     public Pais getPais() {
@@ -152,7 +154,12 @@ public class InicalMB implements Serializable{
     
     public String proximoTela(){
         if (fornecedorCidade!=null){
-            return "formulario";
+            FacesContext fc = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("listaPais", listaPaisSelecionados);
+            session.setAttribute("listaCidade", listaCidadeSelecionadas);
+            session.setAttribute("fornecedorCidade", fornecedorCidade);
+            return "formulario";            
         }else {
             FacesMessage mensagemAtencao = new FacesMessage("Select a school.", "");
             FacesContext.getCurrentInstance().addMessage("Attention", mensagemAtencao);

@@ -6,17 +6,23 @@
 package br.com.travelmate.managerBean;
 
 
-import br.com.travelmate.Bean.ListasBean;
-import br.com.travelmate.model.Fornecedor;
+import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedorcidade;
+import br.com.travelmate.model.Fornecedorcidadeguia;
 import br.com.travelmate.model.Guiaescola;
 import br.com.travelmate.model.Pais;
+import br.com.travelmate.repository.FornecedorCidadeGuiaRepository;
+import br.com.travelmate.repository.FornecedorCidadeRepository;
+import br.com.travelmate.repository.GuiaEscolaRepository;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,37 +34,26 @@ public class FormularioMB implements Serializable{
 
    
     @EJB
-    private Fornecedorcidade repoFornecedorcidade;
-    private List<Fornecedor> listaFornecedor;
+    private GuiaEscolaRepository guiaEscolaRepository;
+    @EJB
+    private FornecedorCidadeGuiaRepository fornecedorCidadeGuiaRepository;
+    @EJB 
+    private FornecedorCidadeRepository fornecedorCidadeRepository;
     private List<Pais> listaPais;
-    private List<Fornecedorcidade> listaFornecedorCidade;
+    private List<Cidade> listaCidade;
+    private Fornecedorcidade fornecedorcidade;
     private Guiaescola guiaEscola;
-    private Fornecedor fornecedor;
-    private Pais pais;
     
     @PostConstruct
     public void init(){
-        ListasBean listasBean = new ListasBean();
-        listaFornecedor = listasBean.listarFornecedor();
-        listaPais = listasBean.listarPais();
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+	listaPais = (List<Pais>) session.getAttribute("listaPais");
+        listaCidade = (List<Cidade>) session.getAttribute("listaCidade");
+        fornecedorcidade = (Fornecedorcidade) session.getAttribute("fonecedorCidade");
     }
 
-    public List<Fornecedor> getListaFornecedor() {
-        return listaFornecedor;
-    }
-
-    public void setListaFornecedor(List<Fornecedor> listaFornecedor) {
-        this.listaFornecedor = listaFornecedor;
-    }
-
-    public List<Pais> getListaPais() {
-        return listaPais;
-    }
-
-    public void setListaPais(List<Pais> listaPais) {
-        this.listaPais = listaPais;
-    }
-
+    
     public Guiaescola getGuiaEscola() {
         return guiaEscola;
     }
@@ -66,42 +61,40 @@ public class FormularioMB implements Serializable{
     public void setGuiaEscola(Guiaescola guiaEscola) {
         this.guiaEscola = guiaEscola;
     }
-
-    public Fornecedorcidade getRepoFornecedorcidade() {
-        return repoFornecedorcidade;
-    }
-
-    public void setRepoFornecedorcidade(Fornecedorcidade repoFornecedorcidade) {
-        this.repoFornecedorcidade = repoFornecedorcidade;
-    }
-
-    public List<Fornecedorcidade> getListaFornecedorCidade() {
-        return listaFornecedorCidade;
-    }
-
-    public void setListaFornecedorCidade(List<Fornecedorcidade> listaFornecedorCidade) {
-        this.listaFornecedorCidade = listaFornecedorCidade;
-    }
-
-    public Pais getPais() {
-        return pais;
-    }
-
-    public void setPais(Pais pais) {
-        this.pais = pais;
-    }
     
-    
-    
-    public void getListFornecedorCidade(){
-        ListasBean listasBean = new ListasBean();
-        if ((pais!=null) && (fornecedor!=null)){
-            listaFornecedorCidade = listasBean.listarFornecedorCidade(fornecedor.getIdfornecedor(), pais.getIdpais());
+    public String salvar(){
+        guiaEscola = guiaEscolaRepository.create(guiaEscola);
+        if (listaPais.size()==1){
+            salvarCidade(listaPais.get(0));
         }else {
-            listaFornecedorCidade = listasBean.listarFornecedorCidade(0, 0);
+            salvarPais();
+        }
+        FacesMessage mensagemAtencao = new FacesMessage("Saved successfully.", "");
+        FacesContext.getCurrentInstance().addMessage("Confirmation", mensagemAtencao);
+        return "index";
+    }
+    
+    public void salvarPais(){
+        for(int i=0;i<listaPais.size();i++){
+            salvarCidade(listaPais.get(i));
         }
     }
     
+    public void salvarCidade(Pais pais){
+        if (listaCidade==null){
+            listaCidade = pais.getCidadeList();
+        }
+        for(int i=0;i<listaCidade.size();i++){
+            salvarGuia(pais.getIdpais(), listaCidade.get(i).getIdcidade());
+        }
+    }
     
-    
+    public void salvarGuia(int idPais, int idCidade){
+        Fornecedorcidadeguia fornecedorcidadeguia = new Fornecedorcidadeguia();
+        Fornecedorcidade f = fornecedorCidadeRepository.find("SELECT f FROM Fornecedorcidade f where f.fornecedor.idfornecedor=" +
+                this.fornecedorcidade.getFornecedor().getIdfornecedor() + " and f.cidade.idcidade=" + idCidade);
+        fornecedorcidadeguia.setFornecedorcidade(fornecedorcidade);
+        fornecedorcidadeguia.setGuiaescola(guiaEscola);
+        fornecedorCidadeGuiaRepository.create(fornecedorcidadeguia);
+    }
 }

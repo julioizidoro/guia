@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +24,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "fornecedorcidadeguia")
+@NamedQueries({
+    @NamedQuery(name = "Fornecedorcidadeguia.findAll", query = "SELECT f FROM Fornecedorcidadeguia f")})
 public class Fornecedorcidadeguia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,12 +34,9 @@ public class Fornecedorcidadeguia implements Serializable {
     @Basic(optional = false)
     @Column(name = "idfornecedorcidadeguia")
     private Integer idfornecedorcidadeguia;
-    @Column(name = "idpais")
-    private Integer idpais;
-    @Column(name = "idfornecedorcidade")
-    private Integer idfornecedorcidade;
-    @Column(name = "idfornecedor")
-    private Integer idfornecedor;
+    @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
+    @ManyToOne(optional = false)
+    private Fornecedorcidade fornecedorcidade;
     @JoinColumn(name = "guiaescola_idguiaescola", referencedColumnName = "idguiaescola")
     @ManyToOne(optional = false)
     private Guiaescola guiaescola;
@@ -55,28 +56,12 @@ public class Fornecedorcidadeguia implements Serializable {
         this.idfornecedorcidadeguia = idfornecedorcidadeguia;
     }
 
-    public Integer getIdpais() {
-        return idpais;
+    public Fornecedorcidade getFornecedorcidade() {
+        return fornecedorcidade;
     }
 
-    public void setIdpais(Integer idpais) {
-        this.idpais = idpais;
-    }
-
-    public Integer getIdfornecedorcidade() {
-        return idfornecedorcidade;
-    }
-
-    public void setIdfornecedorcidade(Integer idfornecedorcidade) {
-        this.idfornecedorcidade = idfornecedorcidade;
-    }
-
-    public Integer getIdfornecedor() {
-        return idfornecedor;
-    }
-
-    public void setIdfornecedor(Integer idfornecedor) {
-        this.idfornecedor = idfornecedor;
+    public void setFornecedorcidade(Fornecedorcidade fornecedorcidade) {
+        this.fornecedorcidade = fornecedorcidade;
     }
 
     public Guiaescola getGuiaescola() {
