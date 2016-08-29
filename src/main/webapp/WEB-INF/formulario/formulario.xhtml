@@ -25,25 +25,7 @@
             <img src="../resources/img/logo.png" style=" margin-left:8%;"/>
             <br></br>   <br></br><br></br>
             <p:wizard class="painelFormulario">
-                <p:tab id="etapa1">
-                    <br></br>   
-                    <p:outputLabel for="escola" value="School's Name"/>
-                    <p:outputLabel for="pais" value="Countries" style="margin-left: 28%;"/>
-                    <p:outputLabel for="cidade" value="Cities" style="margin-left: 24.5%;"/><br></br>  
-                    <h:panelGrid columns="3">
-                        <p:inputText id="escola" value="#" style="width:150%;"/>
-                        <p:selectOneMenu id="pais" value="#" style="margin-left:38%;width:200px;">
-                            <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
-                            <f:selectItems value="#" var="pais" itemLabel="#" itemValue="#"/>
-                        </p:selectOneMenu>
-                        <p:selectOneMenu id="cidade" value="#" style="margin-left:11%;width: 220px;">
-                            <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
-                            <f:selectItems value="#" var="cidade" itemLabel="#" itemValue="#"/>
-                        </p:selectOneMenu>
-                    </h:panelGrid>
-                    <br></br>  <br></br>  
-                </p:tab>
-                <p:tab id="etapa2">
+               <p:tab id="etapa1">
                     <br></br> 
                     <p:outputLabel for="site" value="Agent’s Site"/><br></br>
                     <p:inputText id="site" value="#" maxlength="100" style="width: 90%;"/>
@@ -81,7 +63,7 @@
                     <p:inputTextarea id="duracao" value="#" rows="1" cols="104" />
                     <br></br>  <br></br>
                 </p:tab>
-                <p:tab id="etapa3">
+                <p:tab id="etapa2">
                     <br></br> 
                     <p:outputLabel for="material" value="When the student needs to pay the Material (Books)?In the Application or when arrives at School?"/><br></br>
                     <p:selectOneMenu id="material" value="#" style="width:150px;">
@@ -102,7 +84,7 @@
                     <p:inputText id="ondeExameFinal" value="#" style="width:81%;margin-left: 5%" rendered="true" />
                     <br></br>  <br></br>
                 </p:tab>
-                <p:tab id="etapa4">
+                <p:tab id="etapa3">
                     <h2 >Homestay </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao1" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -150,7 +132,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa5">
+                <p:tab id="etapa4">
                     <h2 >Apartment </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao2" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -198,7 +180,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa6">
+                <p:tab id="etapa5">
                     <h2 >Studio </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao3" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -246,7 +228,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa7">
+                <p:tab id="etapa6">
                     <h2 >Hostel </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao4" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -294,7 +276,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa8">
+                <p:tab id="etapa7">
                     <h2 >Residence </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao5" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -342,7 +324,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa9">
+                <p:tab id="etapa8">
                     <h2 >Student Residence </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao6" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
@@ -390,7 +372,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa10">
+                <p:tab id="etapa9">
                     <br></br> 
                     <p:outputLabel for="feriado" value="When the School will close at the End of the Year? And when will be the first Day of Classes?"/><br></br>
                     <p:calendar id="feriado" pattern="dd/MM/yyyy" size="13">

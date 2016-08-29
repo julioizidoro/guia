@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -12,7 +13,7 @@
     </h:head>
 
     <h:body >
-        <h:form id="telaLogin">
+        <h:form id="telaInicial">
             <br></br> <br></br>  
             <p:growl id="mensagem" showDetail="true" sticky="true" />
             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
@@ -20,18 +21,42 @@
             <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
                 <img src="/resources/img/ajax-loader.gif" />
             </p:dialog>
-            <div id="centro">
-                <br></br>
-                <img src="/resources/img/logo.png" width="40%" style="text-align: center;"/>
-                <br></br>
-                <p:outputLabel value="Username" style="margin-left: 5%;" /><br></br>
-                <p:inputText value="#" style="margin-left: 5%;width: 70%;" />
-                <br></br><br></br>
-                <p:outputLabel value="Password" style="margin-left: 5%;" /><br></br>
-                <p:inputText value="#" type="password" style="margin-left: 5%;width: 70%;" />
-                <br></br><br></br>
-                <p:commandLink value="Login" class="botaoLogin" style="margin-left: 80%"/>
+            <br></br>  
+            <div  style="width:82%;margin-left:7%;">
+                <img src="../resources/img/logo.png" />
+            </div>
+            <br></br>  
+            <h:panelGrid columns="3" columnClasses="tamanho,tamanho,tamanho"  style="width:82%;margin-left:7%;">
+                <p:outputLabel value="Countries" for="idpais"/>
+                <p:outputLabel value="Cities" for="idcidade"/>
+                <p:outputLabel value="School's Name" for="idescola"/>
+
+                <p:selectCheckboxMenu id="idpais" value="#{inicalMB.listaPaisSelecionados}" label="pais"
+                                  style="width:200px;"    filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                    <f:selectItem itemLabel="Selecione" itemValue="0"/> 
+                    <f:selectItems value="#{inicalMB.listaPais}" />
+                </p:selectCheckboxMenu>
+                <p:selectCheckboxMenu id="idcidade" value="#{inicalMB.listaCidadeSelecionadas}" label="cidade"
+                                   style="width:200px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                    <f:selectItem itemLabel="Selecione" itemValue="0"/>
+                    <f:selectItems value="#{inicalMB.listaCidade}" />
+                </p:selectCheckboxMenu>
+                <p:selectOneMenu id="idescola" style="width:200px;"
+                                 value="#{inicalMB.fornecedorCidade}"
+                                 converter="FornecedorCidadeConverter" filter="true"
+                                 filterMatchMode="contains" panelStyle="width:180px">
+                    <f:selectItem itemLabel="Selecione" itemValue="0"
+                                  noSelectionOption="true" />
+                    <f:selectItems id="idFornecedor"
+                                   value="#{inicalMB.listaFornecedorCidade}" var="fornecedorcidade"
+                                   itemLabel="#{fornecedorcidade.fornecedor.nome}" itemValue="#{fornecedorcidade}" />
+                    <f:attribute name="listaFornecedorCidade"
+                                 value="#{inicalMB.listaFornecedorCidade}" />
+                </p:selectOneMenu>
+            </h:panelGrid>
+            <div align="right" style="width:82%;margin-left:7%;">
+                <p:commandButton action="#{inicalMB.proximoTela()}" value="Next" icon="ui-icon-arrowthickstop-1-e"/>
             </div>
         </h:form>
     </h:body>
-</html>
+</html> 
