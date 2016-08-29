@@ -29,7 +29,7 @@
                 </div>
                 <br></br>   
                 <div align="center" style="width:78%;margin-left:9%;">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid columns="1" >
                         <p:outputLabel value="Countries" for="idpais"/>
                         <p:selectCheckboxMenu id="idpais" value="#{inicalMB.listaPaisSelecionados}" label="pais"
                                           style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
@@ -60,8 +60,8 @@
                     </h:panelGrid>
                 </div>
                 <br></br>
-                <div align="right" style="width:84%;margin-left:7%;">
-                    <p:commandButton action="#{inicalMB.proximoTela()}" value="Next" icon="ui-icon-arrowthickstop-1-e"/>
+                <div align="right" style="width:83.5%;margin-left:7%;">
+                    <p:commandButton action="#{inicalMB.proximoTela()}" value="Next" icon="ui-icon-arrowthickstop-1-e" update="mensagem"/>
                 </div>
                  <br></br>    
             </div>
