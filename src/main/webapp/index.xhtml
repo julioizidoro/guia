@@ -33,15 +33,14 @@
                         <p:outputLabel value="Countries" for="idpais"/>
                         <p:selectCheckboxMenu id="idpais" value="#{inicalMB.listaPaisSelecionados}" label="pais"
                                           style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                            <f:selectItem itemLabel="Selecione" itemValue="0"/> 
-                            <f:selectItems value="#{inicalMB.listaPais}" />
+                            <f:selectItems value="#{inicalMB.listaPais}" var="pais" itemLabel="#{pais.nome}" itemValue="pais"/>
+                            <p:ajax event="change" listener="#{inicalMB.gerarListaCidade()}" update="idcidade"/>
                         </p:selectCheckboxMenu> 
                         <br/>
                         <p:outputLabel value="Cities" for="idcidade"/> 
                         <p:selectCheckboxMenu id="idcidade" value="#{inicalMB.listaCidadeSelecionadas}" label="cidade"
                                            style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                            <f:selectItem itemLabel="Selecione" itemValue="0"/>
-                            <f:selectItems value="#{inicalMB.listaCidade}" />
+                            <f:selectItems value="#{inicalMB.listaCidade}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade}"/>
                         </p:selectCheckboxMenu>
                         <br/>
                         <p:outputLabel value="School's Name" for="idescola"/>
