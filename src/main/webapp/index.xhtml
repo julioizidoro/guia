@@ -12,50 +12,58 @@
         <link rel="SHORTCUT ICON" href="http://cdn8.staztic.com/app/a/6090/6090049/travelmate-9-l-280x280.png"/>
     </h:head>
 
-    <h:body >
-        <h:form id="telaInicial">
+    <h:body > 
+        <h:form id="telaInicial" style="font-size:12px;">
             <br></br> <br></br>  
             <p:growl id="mensagem" showDetail="true" sticky="true" />
             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 
             <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                <img src="/resources/img/ajax-loader.gif" />
+                <img src="resources/img/ajax-loader.gif" />
             </p:dialog>
-            <br></br>  
-            <div  style="width:82%;margin-left:7%;">
-                <img src="../resources/img/logo.png" />
-            </div>
-            <br></br>  
-            <h:panelGrid columns="3" columnClasses="tamanho,tamanho,tamanho"  style="width:82%;margin-left:7%;">
-                <p:outputLabel value="Countries" for="idpais"/>
-                <p:outputLabel value="Cities" for="idcidade"/> 
-                <p:outputLabel value="School's Name" for="idescola"/>
-
-                <p:selectCheckboxMenu id="idpais" value="#{inicalMB.listaPaisSelecionados}" label="pais"
-                                  style="width:200px;"    filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                    <f:selectItem itemLabel="Selecione" itemValue="0"/> 
-                    <f:selectItems value="#{inicalMB.listaPais}" />
-                </p:selectCheckboxMenu>
-                <p:selectCheckboxMenu id="idcidade" value="#{inicalMB.listaCidadeSelecionadas}" label="cidade"
-                                   style="width:200px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                    <f:selectItem itemLabel="Selecione" itemValue="0"/>
-                    <f:selectItems value="#{inicalMB.listaCidade}" />
-                </p:selectCheckboxMenu>
-                <p:selectOneMenu id="idescola" style="width:200px;"
-                                 value="#{inicalMB.fornecedorCidade}"
-                                 converter="FornecedorCidadeConverter" filter="true"
-                                 filterMatchMode="contains" panelStyle="width:180px">
-                    <f:selectItem itemLabel="Selecione" itemValue="0"
-                                  noSelectionOption="true" />
-                    <f:selectItems id="idFornecedor"
-                                   value="#{inicalMB.listaFornecedorCidade}" var="fornecedorcidade"
-                                   itemLabel="#{fornecedorcidade.fornecedor.nome}" itemValue="#{fornecedorcidade}" />
-                    <f:attribute name="listaFornecedorCidade"
-                                 value="#{inicalMB.listaFornecedorCidade}" />
-                </p:selectOneMenu>
-            </h:panelGrid>
-            <div align="right" style="width:82%;margin-left:7%;">
-                <p:commandButton action="#{inicalMB.proximoTela()}" value="Next" icon="ui-icon-arrowthickstop-1-e"/>
+            <br></br>   
+            <div id="centro">
+                 <br></br>   
+                <div align="center" style="width:84%;margin-left:7%;">
+                    <img src="resources/img/logo.png" />
+                </div>
+                <br></br>   
+                <div align="center" style="width:78%;margin-left:9%;">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Countries" for="idpais"/>
+                        <p:selectCheckboxMenu id="idpais" value="#{inicalMB.listaPaisSelecionados}" label="pais"
+                                          style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                            <f:selectItem itemLabel="Selecione" itemValue="0"/> 
+                            <f:selectItems value="#{inicalMB.listaPais}" />
+                        </p:selectCheckboxMenu> 
+                        <br/>
+                        <p:outputLabel value="Cities" for="idcidade"/> 
+                        <p:selectCheckboxMenu id="idcidade" value="#{inicalMB.listaCidadeSelecionadas}" label="cidade"
+                                           style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                            <f:selectItem itemLabel="Selecione" itemValue="0"/>
+                            <f:selectItems value="#{inicalMB.listaCidade}" />
+                        </p:selectCheckboxMenu>
+                        <br/>
+                        <p:outputLabel value="School's Name" for="idescola"/>
+                        <p:selectOneMenu id="idescola" style="width:240px;"
+                                         value="#{inicalMB.fornecedorCidade}"
+                                         converter="FornecedorCidadeConverter" filter="true"
+                                         filterMatchMode="contains" panelStyle="width:180px">
+                            <f:selectItem itemLabel="Selecione" itemValue="0"
+                                          noSelectionOption="true" />
+                            <f:selectItems id="idFornecedor"
+                                           value="#{inicalMB.listaFornecedorCidade}" var="fornecedorcidade"
+                                           itemLabel="#{fornecedorcidade.fornecedor.nome}" itemValue="#{fornecedorcidade}" />
+                            <f:attribute name="listaFornecedorCidade"
+                                         value="#{inicalMB.listaFornecedorCidade}" />
+                        </p:selectOneMenu> 
+                    </h:panelGrid>
+                </div>
+                <br></br>
+                <div align="right" style="width:84%;margin-left:7%;">
+                    <p:commandButton action="#{inicalMB.proximoTela()}" value="Next" icon="ui-icon-arrowthickstop-1-e"/>
+                </div>
+                 <br></br>    
             </div>
         </h:form>
     </h:body>
