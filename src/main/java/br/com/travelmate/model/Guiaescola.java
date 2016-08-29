@@ -184,6 +184,9 @@ public class Guiaescola implements Serializable {
     @Size(max = 65535)
     @Column(name = "observacoesgerais")
     private String observacoesgerais;
+    @Size(max = 45)
+    @Column(name = "datainiciocurso")
+    private String datainiciocurso;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "guiaescola")
     private List<Fornecedorcidadeguia> fornecedorcidadeguiaList;
 
@@ -608,6 +611,14 @@ public class Guiaescola implements Serializable {
 
     public void setFornecedorcidadeguiaList(List<Fornecedorcidadeguia> fornecedorcidadeguiaList) {
         this.fornecedorcidadeguiaList = fornecedorcidadeguiaList;
+    }
+
+    public String getDatainiciocurso() {
+        return datainiciocurso;
+    }
+
+    public void setDatainiciocurso(String datainiciocurso) {
+        this.datainiciocurso = datainiciocurso;
     }
 
     @Override

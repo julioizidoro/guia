@@ -15,7 +15,7 @@ body{
 #telaFormulario{
     width: 70%; 
     height: 100%;
-    margin: 4% 0% 2% 15%;
+    margin: 2% 0% 2% 15%;
     float: left;
     color:#ffffff;
     background-color: rgba(0,0,0,0.68);
@@ -67,4 +67,13 @@ body{
 
 .tamanho{
     width: 25%;
+}
+
+.comment-text-area {
+  float: left;
+  width:95%;
+}
+
+br{
+    padding: 10px;
 }
