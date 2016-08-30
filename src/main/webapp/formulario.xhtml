@@ -24,17 +24,14 @@
             <br></br>
             <img src="resources/img/logo.png" style=" margin-left:8%;"/>
             <br></br>   <br></br>
-            <p:tabView class="painelFormulario"> 
-                <p:tab id="etapa1" title="Information">
+            <p:wizard class="painelFormulario">  
+                <p:tab id="etapa1" >
                     <br></br> 
-                    <p:outputLabel for="nome" value="Your Name"/><br></br>
-                    <p:inputText id="nome" value="#{formularioMB.guiaEscola.nome}" maxlength="100" style="width: 90%;"/>
-                    <br></br>  <br></br>
-                    <p:outputLabel for="site" value="Agent’s Site"/><br></br>
-                    <p:inputText id="site" value="#{formularioMB.guiaEscola.site}" maxlength="100" style="width: 90%;"/>
+                    <p:outputLabel for="site" value="Agent’s Site" /><br></br>
+                    <p:inputText id="site" value="#{formularioMB.guiaEscola.site}" maxlength="100" style="width: 90%;margin-top: 5px;"/>
                     <br></br>  <br></br>
                     <p:outputLabel for="idade" value="Minimun Age for Regular Courses and Maximun Age for Regular Courses?"/><br></br>
-                    <p:selectOneMenu id="idade" value="#{formularioMB.guiaEscola.idade}" style="width:150px;">
+                    <p:selectOneMenu id="idade" value="#{formularioMB.guiaEscola.idade}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="10" itemValue="10"/>
                         <f:selectItem itemLabel="11" itemValue="11"/> 
@@ -48,7 +45,7 @@
                     </p:selectOneMenu>
                     <br></br>  <br></br>
                     <p:outputLabel for="dataInicio" value="For Regular Courses the student can start any Monday? Or needs to follow the Calendar?"/><br></br>
-                    <p:selectOneMenu id="dataInicio" value="#{formularioMB.guiaEscola.datainiciocurso}" style="width:150px;">
+                    <p:selectOneMenu id="dataInicio" value="#{formularioMB.guiaEscola.datainiciocurso}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -60,38 +57,38 @@
                     </p:selectOneMenu>
                     <br></br>  <br></br> 
                     <p:outputLabel for="teste" value="Wich Day is the Level Test?"/><br></br>
-                    <p:inputTextarea id="teste" value="#{formularioMB.guiaEscola.teste}" rows="4" class="comment-text-area" />
+                    <p:inputTextarea id="teste" value="#{formularioMB.guiaEscola.teste}" rows="4" class="comment-text-area" style="margin-top: 5px;"/>
                     <br></br>  <br></br> <br></br> <br></br> <br></br> <br></br>
                     <p:outputLabel for="duracao" value="What is the duration of the Class?"/><br></br>
-                    <p:inputTextarea id="duracao" value="#{formularioMB.guiaEscola.duracao}" rows="1" class="comment-text-area" />
+                    <p:inputTextarea id="duracao" value="#{formularioMB.guiaEscola.duracao}" rows="1" class="comment-text-area" style="margin-top: 5px;"/>
                     <br></br>  <br></br> 
                 </p:tab>
-                <p:tab id="etapa2" title="Complement">
+                <p:tab id="etapa2">
                     <br></br>  
                     <p:outputLabel for="material" value="When the student needs to pay the Material (Books)?In the Application or when arrives at School?"/><br></br>
-                    <p:selectOneMenu id="material" value="#{formularioMB.guiaEscola.material}" style="width:150px;">
+                    <p:selectOneMenu id="material" value="#{formularioMB.guiaEscola.material}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="TravelMate - Agent" itemValue="Agent"/>
                         <f:selectItem itemLabel="School" itemValue="School"/> 
                     </p:selectOneMenu>
                     <br></br>  <br></br>
                     <p:outputLabel for="courier" value="How much is the courier to send the I-20?" rendered="true"/><br></br>
-                    <p:inputText id="courier" value="#{formularioMB.guiaEscola.courier}" style="width:11%;text-align: right;" rendered="true" placeholder="U$ 0,00">
+                    <p:inputText id="courier" value="#{formularioMB.guiaEscola.courier}" style="width:11%;text-align: right;margin-top:5px;" rendered="true" placeholder="U$ 0,00">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                     </p:inputText>
                     <br></br>  <br></br>
                     <p:outputLabel for="exameFinal" value="How much is the Final Exam and wich one the student will pay? And when the student needs to pay it, in the Application or when arrives at School? " rendered="true"/><br></br>
-                    <p:inputText id="exameFinal" value="#{formularioMB.guiaEscola.examefinal}" style="width:11%;text-align: right;" rendered="true" placeholder="U$ 0,00">
+                    <p:inputText id="exameFinal" value="#{formularioMB.guiaEscola.examefinal}" style="margin-top:5px;width:11%;text-align: right;" rendered="true" placeholder="U$ 0,00">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                     </p:inputText>
-                    <p:inputText id="ondeExameFinal" value="#{formularioMB.guiaEscola.pagaexamefinal}" style="width:81%;margin-left: 5%" rendered="true" />
+                    <p:inputText id="ondeExameFinal" value="#{formularioMB.guiaEscola.pagaexamefinal}" style="width:81%;margin-left: 5%;margin-top: 5px;" rendered="true" />
                     <br></br>  <br></br>
                 </p:tab>
-                <p:tab id="etapa3" title="Homestay">
+                <p:tab id="etapa3">
                     <h2 >Homestay </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao1" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
-                    <p:selectOneMenu id="entradaAcomodacao1" value="#{formularioMB.guiaEscola.homestayentrada}" style="width:150px;">
+                    <p:selectOneMenu id="entradaAcomodacao1" value="#{formularioMB.guiaEscola.homestayentrada}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -103,7 +100,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="saidaAcomodacao1" value="Wich Day the Student can leave from Accommodation?"/><br></br>
-                    <p:selectOneMenu id="saidaAcomodacao1" value="#{formularioMB.guiaEscola.homestaysaida}" style="width:150px;">
+                    <p:selectOneMenu id="saidaAcomodacao1" value="#{formularioMB.guiaEscola.homestaysaida}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -115,11 +112,11 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="noiteExtra1" value="The student can book extras nights? How many will be the maximum?"/><br></br>
-                    <p:selectOneMenu id="noiteExtra1" value="#{formularioMB.guiaEscola.homestaynoiteextra}" style="width:72px;">
+                    <p:selectOneMenu id="noiteExtra1" value="#{formularioMB.guiaEscola.homestaynoiteextra}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="numExtra1" value="#{formularioMB.guiaEscola.homestaynumeronoiteextra}" style="width:70px;margin-left:5%;">
+                    <p:selectOneMenu id="numExtra1" value="#{formularioMB.guiaEscola.homestaynumeronoiteextra}" style="width:70px;margin-left:5%;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="1" itemValue="1"/>
                         <f:selectItem itemLabel="2" itemValue="2"/> 
@@ -129,17 +126,17 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="compartilhado1" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
-                    <p:selectOneMenu id="compartilhado1" value="#{formularioMB.guiaEscola.homestaycompartilhado}" style="width:72px;">
+                    <p:selectOneMenu id="compartilhado1" value="#{formularioMB.guiaEscola.homestaycompartilhado}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa4" title="Apartment">
+                <p:tab id="etapa4">
                     <h2 >Apartment </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao2" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
-                    <p:selectOneMenu id="entradaAcomodacao2" value="#{formularioMB.guiaEscola.apartmententrada}" style="width:150px;">
+                    <p:selectOneMenu id="entradaAcomodacao2" value="#{formularioMB.guiaEscola.apartmententrada}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -151,7 +148,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="saidaAcomodacao2" value="Wich Day the Student can leave from Accommodation?"/><br></br>
-                    <p:selectOneMenu id="saidaAcomodacao2" value="#{formularioMB.guiaEscola.apartmentsaida}" style="width:150px;">
+                    <p:selectOneMenu id="saidaAcomodacao2" value="#{formularioMB.guiaEscola.apartmentsaida}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -163,11 +160,11 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="noiteExtra2" value="The student can book extras nights? How many will be the maximum?"/><br></br>
-                    <p:selectOneMenu id="noiteExtra2" value="#{formularioMB.guiaEscola.apartmentnoiteextra}" style="width:72px;">
+                    <p:selectOneMenu id="noiteExtra2" value="#{formularioMB.guiaEscola.apartmentnoiteextra}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="numExtra2" value="#{formularioMB.guiaEscola.apartmentnumeronoiteextra}" style="width:70px;margin-left:5%;">
+                    <p:selectOneMenu id="numExtra2" value="#{formularioMB.guiaEscola.apartmentnumeronoiteextra}" style="width:70px;margin-left:5%;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="1" itemValue="1"/>
                         <f:selectItem itemLabel="2" itemValue="2"/> 
@@ -177,17 +174,17 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="compartilhado2" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
-                    <p:selectOneMenu id="compartilhado2" value="#{formularioMB.guiaEscola.apartmentcompartilhado}" style="width:72px;">
+                    <p:selectOneMenu id="compartilhado2" value="#{formularioMB.guiaEscola.apartmentcompartilhado}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa5" title="Studio">
+                <p:tab id="etapa5">
                     <h2 >Studio </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao3" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
-                    <p:selectOneMenu id="entradaAcomodacao3" value="#{formularioMB.guiaEscola.studioentrada}" style="width:150px;">
+                    <p:selectOneMenu id="entradaAcomodacao3" value="#{formularioMB.guiaEscola.studioentrada}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -199,7 +196,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="saidaAcomodacao3" value="Wich Day the Student can leave from Accommodation?"/><br></br>
-                    <p:selectOneMenu id="saidaAcomodacao3" value="#{formularioMB.guiaEscola.studiosaida}" style="width:150px;">
+                    <p:selectOneMenu id="saidaAcomodacao3" value="#{formularioMB.guiaEscola.studiosaida}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -211,11 +208,11 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="noiteExtra3" value="The student can book extras nights? How many will be the maximum?"/><br></br>
-                    <p:selectOneMenu id="noiteExtra3" value="#{formularioMB.guiaEscola.studionoiteextra}" style="width:72px;">
+                    <p:selectOneMenu id="noiteExtra3" value="#{formularioMB.guiaEscola.studionoiteextra}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="numExtra3" value="#{formularioMB.guiaEscola.studionumeronoiteextra}" style="width:70px;margin-left:5%;">
+                    <p:selectOneMenu id="numExtra3" value="#{formularioMB.guiaEscola.studionumeronoiteextra}" style="width:70px;margin-left:5%;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="1" itemValue="1"/>
                         <f:selectItem itemLabel="2" itemValue="2"/> 
@@ -225,17 +222,17 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="compartilhado3" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
-                    <p:selectOneMenu id="compartilhado3" value="#{formularioMB.guiaEscola.studiocompartilhado}" style="width:72px;">
+                    <p:selectOneMenu id="compartilhado3" value="#{formularioMB.guiaEscola.studiocompartilhado}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa6" title="Hostel">
+                <p:tab id="etapa6">
                     <h2 >Hostel </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao4" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
-                    <p:selectOneMenu id="entradaAcomodacao4" value="#{formularioMB.guiaEscola.hostelentrada}" style="width:150px;">
+                    <p:selectOneMenu id="entradaAcomodacao4" value="#{formularioMB.guiaEscola.hostelentrada}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -247,7 +244,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="saidaAcomodacao4" value="Wich Day the Student can leave from Accommodation?"/><br></br>
-                    <p:selectOneMenu id="saidaAcomodacao4" value="#{formularioMB.guiaEscola.hostelsaida}" style="width:150px;">
+                    <p:selectOneMenu id="saidaAcomodacao4" value="#{formularioMB.guiaEscola.hostelsaida}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -259,11 +256,11 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="noiteExtra4" value="The student can book extras nights? How many will be the maximum?"/><br></br>
-                    <p:selectOneMenu id="noiteExtra4" value="#{formularioMB.guiaEscola.hostelnoiteextra}" style="width:72px;">
+                    <p:selectOneMenu id="noiteExtra4" value="#{formularioMB.guiaEscola.hostelnoiteextra}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="numExtra4" value="#{formularioMB.guiaEscola.hostelnumeronoiteextra}" style="width:70px;margin-left:5%;">
+                    <p:selectOneMenu id="numExtra4" value="#{formularioMB.guiaEscola.hostelnumeronoiteextra}" style="width:70px;margin-left:5%;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="1" itemValue="1"/>
                         <f:selectItem itemLabel="2" itemValue="2"/> 
@@ -273,17 +270,17 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="compartilhado4" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
-                    <p:selectOneMenu id="compartilhado4" value="#{formularioMB.guiaEscola.hostelcompartilhado}" style="width:72px;">
+                    <p:selectOneMenu id="compartilhado4" value="#{formularioMB.guiaEscola.hostelcompartilhado}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa7" title="Residence">
+                <p:tab id="etapa7">
                     <h2 >Residence </h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao5" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
-                    <p:selectOneMenu id="entradaAcomodacao5" value="#{formularioMB.guiaEscola.residenceentrada}" style="width:150px;">
+                    <p:selectOneMenu id="entradaAcomodacao5" value="#{formularioMB.guiaEscola.residenceentrada}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -295,7 +292,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="saidaAcomodacao5" value="Wich Day the Student can leave from Accommodation?"/><br></br>
-                    <p:selectOneMenu id="saidaAcomodacao5" value="#{formularioMB.guiaEscola.residencesaida}" style="width:150px;">
+                    <p:selectOneMenu id="saidaAcomodacao5" value="#{formularioMB.guiaEscola.residencesaida}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -307,11 +304,11 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="noiteExtra5" value="The student can book extras nights? How many will be the maximum?"/><br></br>
-                    <p:selectOneMenu id="noiteExtra5" value="#{formularioMB.guiaEscola.residencenoiteextra}" style="width:72px;">
+                    <p:selectOneMenu id="noiteExtra5" value="#{formularioMB.guiaEscola.residencenoiteextra}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="numExtra5" value="#{formularioMB.guiaEscola.residencenumeronoiteextra}" style="width:70px;margin-left:5%;">
+                    <p:selectOneMenu id="numExtra5" value="#{formularioMB.guiaEscola.residencenumeronoiteextra}" style="width:70px;margin-left:5%;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="1" itemValue="1"/>
                         <f:selectItem itemLabel="2" itemValue="2"/> 
@@ -321,17 +318,17 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="compartilhado5" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
-                    <p:selectOneMenu id="compartilhado5" value="#{formularioMB.guiaEscola.residencecompartilhado}" style="width:72px;">
+                    <p:selectOneMenu id="compartilhado5" value="#{formularioMB.guiaEscola.residencecompartilhado}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa8" title="Student">
+                <p:tab id="etapa8">
                     <h2 >Student Residence</h2>
                     <br></br> 
                     <p:outputLabel for="entradaAcomodacao6" value="Wich Day the Student can arrive at Accommodation?"/><br></br>
-                    <p:selectOneMenu id="entradaAcomodacao6" value="#{formularioMB.guiaEscola.studentresidenceentrada}" style="width:150px;">
+                    <p:selectOneMenu id="entradaAcomodacao6" value="#{formularioMB.guiaEscola.studentresidenceentrada}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -343,7 +340,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="saidaAcomodacao6" value="Wich Day the Student can leave from Accommodation?"/><br></br>
-                    <p:selectOneMenu id="saidaAcomodacao6" value="#{formularioMB.guiaEscola.studentresidencesaida}" style="width:150px;">
+                    <p:selectOneMenu id="saidaAcomodacao6" value="#{formularioMB.guiaEscola.studentresidencesaida}" style="width:150px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="Sunday" itemValue="Sunday"/>
                         <f:selectItem itemLabel="Monday" itemValue="Monday"/> 
@@ -355,11 +352,11 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="noiteExtra6" value="The student can book extras nights? How many will be the maximum?"/><br></br>
-                    <p:selectOneMenu id="noiteExtra6" value="#{formularioMB.guiaEscola.studentresidencenoiteextra}" style="width:72px;">
+                    <p:selectOneMenu id="noiteExtra6" value="#{formularioMB.guiaEscola.studentresidencenoiteextra}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="numExtra6" value="#{formularioMB.guiaEscola.studentresidencenumeronoiteextra}" style="width:70px;margin-left:5%;">
+                    <p:selectOneMenu id="numExtra6" value="#{formularioMB.guiaEscola.studentresidencenumeronoiteextra}" style="width:70px;margin-left:5%;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="0"  noSelectionOption="true"/>
                         <f:selectItem itemLabel="1" itemValue="1"/>
                         <f:selectItem itemLabel="2" itemValue="2"/> 
@@ -369,27 +366,27 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="compartilhado6" value="Students travelling alone can stay in a share rooms? In wich type of"/><br></br>
-                    <p:selectOneMenu id="compartilhado6" value="#{formularioMB.guiaEscola.studentresidencecompartilhado}" style="width:72px;">
+                    <p:selectOneMenu id="compartilhado6" value="#{formularioMB.guiaEscola.studentresidencecompartilhado}" style="width:72px;margin-top: 5px;">
                         <f:selectItem itemLabel="No" itemValue="No"/>
                         <f:selectItem itemLabel="Yes" itemValue="Yes"/> 
                     </p:selectOneMenu>
                     <br></br> <br></br>  
                 </p:tab>
-                <p:tab id="etapa9" title="Notes">
+                <p:tab id="etapa9" >
                     <br></br> 
-                    <p:outputLabel for="feriado" value="When the School will close at the End of the Year? And when will be the first Day of Classes?"/><br></br>
-                    <p:calendar id="feriado" value="#{formularioMB.guiaEscola.datafechamento}" pattern="dd/MM/yyyy" size="13">
+                    <p:outputLabel for="feriado" value="When the School will close at the End of the Year? And when will be the first Day of Classes?"/><br/><br/>
+                    <p:calendar id="feriado" value="#{formularioMB.guiaEscola.datafechamento}" pattern="dd/MM/yyyy" size="13" style="margin-top: 5px;">
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                     </p:calendar>
-                    <p:calendar id="feriadoEscola" value="#{formularioMB.guiaEscola.dataabertura}" pattern="dd/MM/yyyy" style="margin-left: 6%;" size="13">
+                    <p:calendar id="feriadoEscola" value="#{formularioMB.guiaEscola.dataabertura}" pattern="dd/MM/yyyy" style="margin-left: 6%;margin-top: 5px;" size="13">
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                     </p:calendar>
                     <br></br> <br></br> 
                     <p:outputLabel for="textoFeriado" value="Wich holidays or other breaks the school have?"/><br></br>
-                    <p:inputTextarea id="textoFeriado" value="#{formularioMB.guiaEscola.feriados}" rows="5"  class="comment-text-area"/>
+                    <p:inputTextarea id="textoFeriado" value="#{formularioMB.guiaEscola.feriados}" rows="5"  class="comment-text-area" style="margin-top: 5px;"/>
                     <br></br> <br></br>  <br></br> <br></br> <br></br> <br></br> <br></br>
                     <p:outputLabel for="valoresAnoSeguinte" value="From when do we need to apply next year fees?"/><br></br>
-                    <p:selectOneMenu id="valoresAnoSeguinte" value="#{formularioMB.guiaEscola.mesnovotarifario}" style="width:130px;">
+                    <p:selectOneMenu id="valoresAnoSeguinte" value="#{formularioMB.guiaEscola.mesnovotarifario}" style="width:130px;margin-top: 5px;">
                         <f:selectItem itemLabel="Select" itemValue="sn" noSelectionOption="true"/>
                         <f:selectItem itemLabel="January" itemValue="January"/>
                         <f:selectItem itemLabel="February" itemValue="February"/> 
@@ -406,10 +403,10 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <p:outputLabel for="notes" value="Notes"/><br></br>
-                    <p:inputTextarea id="notes" value="#{formularioMB.guiaEscola.observacoesgerais}" rows="5" class="comment-text-area" />
-                    <br></br> <br></br> <br></br> <br></br>  <br></br> <br></br> 
-                    <div align="right" style="width: 96%;">
-                        <p:commandButton value="Confirm" icon="ui-icon-check" class="botaoLogin" onclick="PF('finalizar').show();" style=" background: rgba(0,0,0,0.54);color:#fff; border: 1px #ffffff; padding: 0.0em;"/>
+                    <p:inputTextarea id="notes" value="#{formularioMB.guiaEscola.observacoesgerais}" rows="5" cols="108" style="margin-top: 5px;"/>
+                    <br></br> <br></br>
+                     <div align="right" style="width: 96%;">
+                         <p:commandButton value="Confirm" icon="ui-icon-check" class="botaoLogin" onclick="PF('finalizar').show();" style=" background: rgba(0,0,0,0.54);color:#fff; border: 1px #ffffff; padding: 0.0em;"/>
                     </div> 
                     <p:dialog  hideEffect="fade" widgetVar="finalizar" width="280px" style="text-align: center;">
                         <p:outputLabel value="Would you like to finish this form?"  style="text-align: center; color: #4D4D4D;" />
@@ -419,10 +416,9 @@
                         <p:commandButton value="No"  onclick="PF('finalizar').hide();" 
                                          styleClass="ui-confirmdialog-no" icon="ui-icon-close" update=":telaFormulario:mensagem"   style="background: rgba(0,0,0,0.54);color:#fff; border: 1px #ffffff; padding: 0.0em;text-align: center;margin-left: 2%;"/>
                     </p:dialog> 
-                    <br></br> <br></br>
                 </p:tab>
-            </p:tabView >
-            <br></br> <br></br>
-        </h:form>
+            </p:wizard > 
+           <br></br> <br></br>
+        </h:form> 
     </h:body>
 </html>

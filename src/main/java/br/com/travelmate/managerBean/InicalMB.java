@@ -48,6 +48,7 @@ public class InicalMB implements Serializable {
     private List<Cidade> listaCidadeSelecionadas;
     private List<Fornecedor> listaFornecedor;
     private Fornecedor fornecedor = new Fornecedor();
+    private String nome;
 
     @PostConstruct
     public void init() {
@@ -124,6 +125,14 @@ public class InicalMB implements Serializable {
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     
     public void gerarListaFornecedor(){
         listaFornecedor = fornecedorRepository.list("SELECT f FROM Fornecedor f where f.idfornecedor>1000 order by f.nome");
@@ -177,6 +186,7 @@ public class InicalMB implements Serializable {
             session.setAttribute("listaPais", listaPaisSelecionados);
             session.setAttribute("listaCidade", listaCidadeSelecionadas);
             session.setAttribute("fornecedor", fornecedor);
+            session.setAttribute("nome", nome);
             return "formulario";
         } else {
             FacesMessage mensagemAtencao = new FacesMessage("Select a school.", "");

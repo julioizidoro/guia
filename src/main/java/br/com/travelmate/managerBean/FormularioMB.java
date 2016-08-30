@@ -53,6 +53,8 @@ public class FormularioMB implements Serializable{
         listaCidade = (List<Cidade>) session.getAttribute("listaCidade");
         fornecedor = (Fornecedor) session.getAttribute("fornecedor");
         guiaEscola = new Guiaescola();
+        String nome = (String) session.getAttribute("nome");
+        guiaEscola.setNome(nome);
     }
 
     
@@ -65,7 +67,7 @@ public class FormularioMB implements Serializable{
     }
     
     public String salvar(){
-        guiaEscola = guiaEscolaRepository.create(guiaEscola);
+        guiaEscola = guiaEscolaRepository.update(guiaEscola);
         if (listaPais.size()==1){
             salvarCidade(listaPais.get(0));
         }else {
@@ -98,7 +100,7 @@ public class FormularioMB implements Serializable{
         if (f!=null){
             fornecedorcidadeguia.setFornecedorcidade(f);
             fornecedorcidadeguia.setGuiaescola(guiaEscola);
-            fornecedorCidadeGuiaRepository.create(fornecedorcidadeguia);
+            fornecedorCidadeGuiaRepository.update(fornecedorcidadeguia);
         }
     }
 }
