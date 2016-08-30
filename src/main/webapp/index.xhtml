@@ -14,16 +14,28 @@
 
     <h:body > 
         <h:form id="telaInicial" style="font-size:12px;color:#ffffff;">
-            <br></br> <br></br>  
+            <br></br>  
             <p:growl id="mensagem" showDetail="true" sticky="true" />
             <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 
             <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
                 <img src="resources/img/ajax-loader.gif" />
             </p:dialog>
-            <br></br>   
+            <div id="informacao"> 
+                <div id="centroInformacao" >
+                    <h:panelGrid columns="2" >  
+                        <img src="resources/img/information.ico" width="60"/>
+                        <h:panelGrid columns="1" > 
+                            <p:outputLabel value="Dear Partner,"/><br/>
+                            <p:outputLabel value="Thinking help the advisers in the time of consultance, we are making a cheking, about the school procedures, please could you send us some informations?"/>
+                            <p:outputLabel value="Choose the school, country and cities that you represent."/>
+                        </h:panelGrid> 
+                    </h:panelGrid>
+                </div> 
+            </div>
             <div id="centro">
-                 <br></br>   
+                <br></br>   
+                
                 <div align="center" style="width:84%;margin-left:7%;">
                     <img src="resources/img/logo.png" />
                 </div>

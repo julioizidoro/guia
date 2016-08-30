@@ -5,11 +5,26 @@ body{
 #centro {  
     width:340px; 
     height: 100%;
-    margin:5% 0% 2% 36%;
+    margin:1% 0% 2% 36%;
     float: left;
     color:#ffffff; 
     background-color: rgba(0,0,0,0.68);
     font-size: 12px;
+}
+ 
+#informacao {  
+    width: 63%;
+    margin-left:18%;
+    float:left;
+    color:#3A87AD; 
+    background-color:#D9EDF7;
+    font-size:12.5px; 
+    border-radius:5px;
+    border:0.05px solid #BCE8F1;
+}
+ 
+#centroInformacao{
+    padding: 8px;
 }
 
 .ui-wizard-step-title{
