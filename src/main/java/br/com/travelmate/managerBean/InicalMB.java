@@ -6,14 +6,15 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.model.Cidade;
+import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.repository.CidadeRepository;
 import br.com.travelmate.repository.FornecedorCidadeRepository;
+import br.com.travelmate.repository.FornecedorRepository;
 import br.com.travelmate.repository.PaisRepository;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -37,26 +38,27 @@ public class InicalMB implements Serializable {
     private FornecedorCidadeRepository fornecedorCidadeRepository;
     @EJB
     private CidadeRepository cidadeRepository;
+    @EJB
+    private FornecedorRepository fornecedorRepository;
     private Pais pais;
     private List<Pais> listaPais;
     private List<Pais> listaPaisSelecionados;
     private Cidade cidade;
     private List<Cidade> listaCidade;
     private List<Cidade> listaCidadeSelecionadas;
-    private Fornecedorcidade fornecedorCidade;
-    private List<Fornecedorcidade> listaFornecedorCidade;
+    private List<Fornecedor> listaFornecedor;
+    private Fornecedor fornecedor = new Fornecedor();
 
     @PostConstruct
     public void init() {
         pais = new Pais();
         cidade = new Cidade();
-        fornecedorCidade = new Fornecedorcidade();
         listaCidade = new ArrayList<Cidade>();
         listaCidadeSelecionadas = new ArrayList<Cidade>();
-        listaFornecedorCidade = new ArrayList<Fornecedorcidade>();
         listaPais = new ArrayList<Pais>();
         listaPaisSelecionados = new ArrayList<Pais>();
-        gerarListaPais();
+        gerarListaFornecedor();
+        fornecedor = new Fornecedor();
     }
 
     public Pais getPais() {
@@ -91,22 +93,6 @@ public class InicalMB implements Serializable {
         this.listaCidade = listaCidade;
     }
 
-    public Fornecedorcidade getFornecedorCidade() {
-        return fornecedorCidade;
-    }
-
-    public void setFornecedorCidade(Fornecedorcidade fornecedorCidade) {
-        this.fornecedorCidade = fornecedorCidade;
-    }
-
-    public List<Fornecedorcidade> getListaFornecedorCidade() {
-        return listaFornecedorCidade;
-    }
-
-    public void setListaFornecedorCidade(List<Fornecedorcidade> listaFornecedorCidade) {
-        this.listaFornecedorCidade = listaFornecedorCidade;
-    }
-
     public List<Pais> getListaPaisSelecionados() {
         return listaPaisSelecionados;
     }
@@ -123,9 +109,45 @@ public class InicalMB implements Serializable {
         this.listaCidadeSelecionadas = listaCidadeSelecionadas;
     }
 
+    public List<Fornecedor> getListaFornecedor() {
+        return listaFornecedor;
+    }
+
+    public void setListaFornecedor(List<Fornecedor> listaFornecedor) {
+        this.listaFornecedor = listaFornecedor;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+    
+    public void gerarListaFornecedor(){
+        listaFornecedor = fornecedorRepository.list("SELECT f FROM Fornecedor f where f.idfornecedor>1000 order by f.nome");
+        if (listaFornecedor==null){
+            listaFornecedor = new ArrayList<Fornecedor>();
+        }
+    }
+
     public void gerarListaPais() {
-        listaPais = paisRepository.list("SELECT p FROM Pais p order by p.nome");
-        if (listaPais == null) {
+        List<Fornecedorcidade> listaFornecedorCidade;
+        if (fornecedor != null) {
+            String sql = "SELECT f FROM Fornecedorcidade f where ";
+            sql = sql + " f.fornecedor.idfornecedor=" + fornecedor.getIdfornecedor();
+            sql = sql + " GROUP BY f.cidade.pais.idpais ORDER BY f.cidade.pais.nome";
+             listaFornecedorCidade= fornecedorCidadeRepository.list(sql);
+            if (listaFornecedorCidade!=null){
+                listaPais = new ArrayList<Pais>();
+                for(int i=0;i<listaFornecedorCidade.size();i++){
+                    listaPais.add(listaFornecedorCidade.get(i).getCidade().getPais());
+                }
+            }else {
+                listaPais = new ArrayList<Pais>();
+            }
+        } else {
             listaPais = new ArrayList<Pais>();
         }
     }
@@ -147,34 +169,14 @@ public class InicalMB implements Serializable {
             gerarListaFornecedor();
         }else listaCidade = new ArrayList<Cidade>();
     }
-
-    public void gerarListaFornecedor() {
-        if (listaCidadeSelecionadas != null) {
-            String sql = "SELECT f FROM Fornecedorcidade f where ";
-            if ((listaCidadeSelecionadas.size() == 1)) {
-                sql = sql + " f.cidade.idcidade=" + listaCidadeSelecionadas.get(0).getIdcidade();
-            } else {
-                for (int i = 0; i < listaCidadeSelecionadas.size(); i++) {
-                    sql = sql + " f.cidade.idcidade=" + listaCidadeSelecionadas.get(i).getIdcidade();
-                    if ((i + 1) < listaCidadeSelecionadas.size()) {
-                        sql = sql + " or ";
-                    }
-                }
-            }
-            sql = sql + " GROUP BY f.fornecedor.idfornecedor ORDER BY f.fornecedor.nome";
-            listaFornecedorCidade = fornecedorCidadeRepository.list(sql);
-        } else {
-            listaFornecedorCidade = new ArrayList<Fornecedorcidade>();
-        }
-    }
-
+    
     public String proximoTela() {
-        if (fornecedorCidade != null) {
+        if (fornecedor != null) {
             FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("listaPais", listaPaisSelecionados);
             session.setAttribute("listaCidade", listaCidadeSelecionadas);
-            session.setAttribute("fornecedorCidade", fornecedorCidade);
+            session.setAttribute("fornecedor", fornecedor);
             return "formulario";
         } else {
             FacesMessage mensagemAtencao = new FacesMessage("Select a school.", "");

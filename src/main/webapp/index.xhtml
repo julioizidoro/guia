@@ -34,8 +34,7 @@
                         <p:selectCheckboxMenu id="idpais" value="#{inicalMB.listaPaisSelecionados}" label="pais"
                                               converter="PaisConverter"   style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
                             <f:selectItems value="#{inicalMB.listaPais}" var="pais" itemLabel="#{pais.nome}" itemValue="#{pais}"/>
-                             <f:attribute name="listaPais"
-                                         value="#{inicalMB.listaPais}" />
+                             <f:attribute name="listaPais" value="#{inicalMB.listaPais}" />
                             <p:ajax event="change" listener="#{inicalMB.gerarListaCidade()}" update="idcidade, idescola"/>
                         </p:selectCheckboxMenu>  
                         <br/>
@@ -43,23 +42,21 @@
                         <p:selectCheckboxMenu id="idcidade" value="#{inicalMB.listaCidadeSelecionadas}" label="cidade"
                                               converter="CidadeConverter"  style="width:267px;"   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
                             <f:selectItems value="#{inicalMB.listaCidade}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade}"/>
-                            <f:attribute name="listaCidade"
-                                         value="#{inicalMB.listaCidade}" />
-                            <p:ajax event="change" listener="#{inicalMB.gerarListaFornecedor()}" update="idescola"/>
+                            <f:attribute name="listaCidade" value="#{inicalMB.listaCidade}" />
                         </p:selectCheckboxMenu>
                         <br/>
                         <p:outputLabel value="School's Name" for="idescola"/>
                         <p:selectOneMenu id="idescola" style="width:240px;"
-                                         value="#{inicalMB.fornecedorCidade}"
-                                         converter="FornecedorCidadeConverter" filter="true"
+                                         value="#{inicalMB.fornecedor}"
+                                         converter="FornecedorConverter" filter="true"
                                          filterMatchMode="contains" panelStyle="width:180px">
                             <f:selectItem itemLabel="Selecione" itemValue="0"
                                           noSelectionOption="true" />
                             <f:selectItems id="idFornecedor"
-                                           value="#{inicalMB.listaFornecedorCidade}" var="fornecedorcidade"
-                                           itemLabel="#{fornecedorcidade.fornecedor.nome}" itemValue="#{fornecedorcidade}" />
-                            <f:attribute name="listaFornecedorCidade"
-                                         value="#{inicalMB.listaFornecedorCidade}" />
+                                           value="#{inicalMB.listaFornecedor}" var="fornecedorSelecionado"
+                                           itemLabel="#{fornecedorSelecionado.nome}" itemValue="#{fornecedorSelecionado}" />
+                            <f:attribute name="listaFornecedor" value="#{inicalMB.listaFornecedor}" />
+                            <p:ajax event="change" listener="#{inicalMB.gerarListaPais()}" update="idpais"/>
                         </p:selectOneMenu> 
                     </h:panelGrid>
                 </div>

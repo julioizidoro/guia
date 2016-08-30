@@ -7,6 +7,7 @@ package br.com.travelmate.managerBean;
 
 
 import br.com.travelmate.model.Cidade;
+import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Fornecedorcidadeguia;
 import br.com.travelmate.model.Guiaescola;
@@ -41,7 +42,7 @@ public class FormularioMB implements Serializable{
     private FornecedorCidadeRepository fornecedorCidadeRepository;
     private List<Pais> listaPais;
     private List<Cidade> listaCidade;
-    private Fornecedorcidade fornecedorcidade;
+    private Fornecedor fornecedor;
     private Guiaescola guiaEscola;
     
     @PostConstruct
@@ -50,7 +51,8 @@ public class FormularioMB implements Serializable{
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 	listaPais = (List<Pais>) session.getAttribute("listaPais");
         listaCidade = (List<Cidade>) session.getAttribute("listaCidade");
-        fornecedorcidade = (Fornecedorcidade) session.getAttribute("fonecedorCidade");
+        fornecedor = (Fornecedor) session.getAttribute("fornecedor");
+        guiaEscola = new Guiaescola();
     }
 
     
@@ -92,9 +94,11 @@ public class FormularioMB implements Serializable{
     public void salvarGuia(int idPais, int idCidade){
         Fornecedorcidadeguia fornecedorcidadeguia = new Fornecedorcidadeguia();
         Fornecedorcidade f = fornecedorCidadeRepository.find("SELECT f FROM Fornecedorcidade f where f.fornecedor.idfornecedor=" +
-                this.fornecedorcidade.getFornecedor().getIdfornecedor() + " and f.cidade.idcidade=" + idCidade);
-        fornecedorcidadeguia.setFornecedorcidade(fornecedorcidade);
-        fornecedorcidadeguia.setGuiaescola(guiaEscola);
-        fornecedorCidadeGuiaRepository.create(fornecedorcidadeguia);
+                this.fornecedor.getIdfornecedor() + " and f.cidade.idcidade=" + idCidade);
+        if (f!=null){
+            fornecedorcidadeguia.setFornecedorcidade(f);
+            fornecedorcidadeguia.setGuiaescola(guiaEscola);
+            fornecedorCidadeGuiaRepository.create(fornecedorcidadeguia);
+        }
     }
 }
