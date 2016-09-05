@@ -162,9 +162,7 @@ public class InicalMB implements Serializable {
     }
 
     public void gerarListaCidade() {
-        if ((listaPaisSelecionados != null) && (listaPaisSelecionados.size() == 1)) {
-            listaCidade = listaPaisSelecionados.get(0).getCidadeList();
-        } else if ((listaPaisSelecionados != null) && (listaPaisSelecionados.size() > 1)) {
+         if (listaPaisSelecionados != null) {
             String sql = "select c from Cidade c where";
             for (int i = 0; i < listaPaisSelecionados.size(); i++) {
                 sql = sql + " c.pais.idpais=" + listaPaisSelecionados.get(i).getIdpais();
@@ -173,9 +171,10 @@ public class InicalMB implements Serializable {
                 }
             }
             sql = sql + " ORDER BY c.pais.nome, c.cidade.nome";
-            listaCidadeSelecionadas = cidadeRepository.list(sql);
-            listaCidade = new ArrayList<Cidade>();
-            gerarListaFornecedor();
+            listaCidade = cidadeRepository.list(sql);
+            if(listaPaisSelecionados.size()>1){
+             listaCidadeSelecionadas = cidadeRepository.list(sql);
+            }
         }else listaCidade = new ArrayList<Cidade>();
     }
     

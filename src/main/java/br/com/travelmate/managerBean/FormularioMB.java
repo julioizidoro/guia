@@ -12,6 +12,7 @@ import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Fornecedorcidadeguia;
 import br.com.travelmate.model.Guiaescola;
 import br.com.travelmate.model.Pais;
+import br.com.travelmate.repository.CidadeRepository;
 import br.com.travelmate.repository.FornecedorCidadeGuiaRepository;
 import br.com.travelmate.repository.FornecedorCidadeRepository;
 import br.com.travelmate.repository.GuiaEscolaRepository;
@@ -40,6 +41,8 @@ public class FormularioMB implements Serializable{
     private FornecedorCidadeGuiaRepository fornecedorCidadeGuiaRepository;
     @EJB 
     private FornecedorCidadeRepository fornecedorCidadeRepository;
+    @EJB 
+    private CidadeRepository cidadeRepository;
     private List<Pais> listaPais;
     private List<Cidade> listaCidade;
     private Fornecedor fornecedor;
@@ -82,11 +85,13 @@ public class FormularioMB implements Serializable{
         for(int i=0;i<listaPais.size();i++){
             salvarCidade(listaPais.get(i));
         }
-    }
+    } 
     
     public void salvarCidade(Pais pais){
-        if (listaCidade==null){
-            listaCidade = pais.getCidadeList();
+        if (listaCidade==null || listaCidade.size()==0){
+            String sql = "select c from Cidade c where c.pais.idpais=" + pais.getIdpais() 
+                    + " ORDER BY c.pais.nome, c.cidade.nome";
+            listaCidade = cidadeRepository.list(sql);
         }
         for(int i=0;i<listaCidade.size();i++){
             salvarGuia(pais.getIdpais(), listaCidade.get(i).getIdcidade());
