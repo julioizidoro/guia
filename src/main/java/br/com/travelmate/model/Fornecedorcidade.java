@@ -29,8 +29,7 @@ import javax.validation.constraints.Size;
 @Table(name = "fornecedorcidade")
 public class Fornecedorcidade implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Fornecedorcidadeguia> fornecedorcidadeguiaList;
+   
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -156,12 +155,6 @@ public class Fornecedorcidade implements Serializable {
         return "br.com.travelmate.model.Fornecedorcidade[ idfornecedorcidade=" + idfornecedorcidade + " ]";
     }
 
-    public List<Fornecedorcidadeguia> getFornecedorcidadeguiaList() {
-        return fornecedorcidadeguiaList;
-    }
-
-    public void setFornecedorcidadeguiaList(List<Fornecedorcidadeguia> fornecedorcidadeguiaList) {
-        this.fornecedorcidadeguiaList = fornecedorcidadeguiaList;
-    }
+  
     
 }

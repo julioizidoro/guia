@@ -70,7 +70,7 @@ public class FormularioMB implements Serializable{
     }
     
     public String salvar(){
-        guiaEscola = guiaEscolaRepository.update(guiaEscola);
+        guiaEscola = guiaEscolaRepository.updateGuia(guiaEscola);
         if (listaPais.size()==1){
             salvarCidade(listaPais.get(0));
         }else {
@@ -90,13 +90,13 @@ public class FormularioMB implements Serializable{
     public void salvarCidade(Pais pais){
         if (listaCidade==null || listaCidade.size()==0){
             String sql = "select c from Cidade c where c.pais.idpais=" + pais.getIdpais() 
-                    + " ORDER BY c.pais.nome, c.cidade.nome";
+                    + " ORDER BY c.pais.nome, c.nome";
             listaCidade = cidadeRepository.list(sql);
-        }
+        } 
         for(int i=0;i<listaCidade.size();i++){
             salvarGuia(pais.getIdpais(), listaCidade.get(i).getIdcidade());
         }
-    }
+    }  
     
     public void salvarGuia(int idPais, int idCidade){
         Fornecedorcidadeguia fornecedorcidadeguia = new Fornecedorcidadeguia();
@@ -105,7 +105,7 @@ public class FormularioMB implements Serializable{
         if (f!=null){
             fornecedorcidadeguia.setFornecedorcidade(f);
             fornecedorcidadeguia.setGuiaescola(guiaEscola);
-            fornecedorCidadeGuiaRepository.update(fornecedorcidadeguia);
+            fornecedorcidadeguia = fornecedorCidadeGuiaRepository.update(fornecedorcidadeguia);
         }
     }
 }

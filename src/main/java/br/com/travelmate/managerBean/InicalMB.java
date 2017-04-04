@@ -170,7 +170,7 @@ public class InicalMB implements Serializable {
                     sql = sql + " or";
                 }
             }
-            sql = sql + " ORDER BY c.pais.nome, c.cidade.nome";
+            sql = sql + " ORDER BY c.pais.nome, c.nome";
             listaCidade = cidadeRepository.list(sql);
             if(listaPaisSelecionados.size()>1){
              listaCidadeSelecionadas = cidadeRepository.list(sql);

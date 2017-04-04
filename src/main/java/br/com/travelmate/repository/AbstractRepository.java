@@ -22,8 +22,13 @@ public abstract class AbstractRepository<T> {
         return entity;
     }
 
-    public T update(T entity) {
+    public T updateGuia(T entity) {
         return em.merge(entity);
+    }
+    
+    public T update(T entity) {
+        T j = em.merge(entity);
+        return j;
     }
 
     public void remove(Long id) {

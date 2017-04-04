@@ -190,8 +190,7 @@ public class Guiaescola implements Serializable {
      @Size(max = 100)
     @Column(name = "nome")
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "guiaescola")
-    private List<Fornecedorcidadeguia> fornecedorcidadeguiaList;
+    
 
     public Guiaescola() {
     }
@@ -608,13 +607,7 @@ public class Guiaescola implements Serializable {
         this.observacoesgerais = observacoesgerais;
     }
 
-    public List<Fornecedorcidadeguia> getFornecedorcidadeguiaList() {
-        return fornecedorcidadeguiaList;
-    }
-
-    public void setFornecedorcidadeguiaList(List<Fornecedorcidadeguia> fornecedorcidadeguiaList) {
-        this.fornecedorcidadeguiaList = fornecedorcidadeguiaList;
-    }
+    
 
     public String getDatainiciocurso() {
         return datainiciocurso;
